@@ -3,48 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-
-  #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .loader-bar {
-    width: 60%;
-    height: 25px;
-    background: rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-    border-radius: 15px;
-  }
-
-  .loader-fill {
-    height: 100%;
-    width: 0%;
-    background: rgb(9, 168, 208);
-    animation: fillBar 5s linear forwards;
-  }
-
-  @keyframes fillBar {
-    from { width: 0%; }
-    to { width: 100%; }
-  }
-
-  body.loading .background {
-    display: none;
-  }
-
-
-
-
 body {
   font-family: "Inter", sans-serif;
   display: flex;
@@ -311,4 +269,37 @@ body {
 
 .deactivate {
   opacity: 0;
+}
+
+
+.print-signal.loading {
+  font-size: 18px;
+  color: #A05DFF;
+  position: relative;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-inside {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #A05DFF;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+
+.loader-text-inside {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #A05DFF;
 }
