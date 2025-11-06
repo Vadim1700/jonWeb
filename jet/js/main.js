@@ -62,23 +62,29 @@ function goTimerError(time) {
 }
 
 getSignal.onclick = function () {
-    let receivingSignal = getRandomFloat(1.1, 3.99, 2);
-    if (receivingSignal.toString().length == 3) {
-        receivingSignal += "0";
-    }
-    if (receivingSignal.toString().length == 1) {
-        receivingSignal += ".00";
-    }
-    printSignal.innerHTML = `${receivingSignal}x`;
-    printSignal.classList.remove("deactivate");
-    goTimer(60);
     getSignal.disabled = true;
+
+    // Показать только анимацию внутри круга
+    printSignal.classList.remove("deactivate");
+    printSignal.classList.add("loading");
+    printSignal.innerHTML = `<div class="loader-inside"></div>`;
+
+    // Через 3 секунды — показать число
+    setTimeout(() => {
+        let receivingSignal = getRandomFloat(1.1, 3.99, 2);
+        if (receivingSignal.toString().length == 3) {
+            receivingSignal += "0";
+        }
+        if (receivingSignal.toString().length == 1) {
+            receivingSignal += ".00";
+        }
+
+        printSignal.classList.remove("loading");
+        printSignal.innerHTML = `${receivingSignal}x`;
+        goTimer(60);
+    }, 3000);
 };
 
-getSignalTwo.onclick = function () {
-    getSignalTwo.disabled = true;
-    goTimerError(5, "go");
-};
 
 (function (o, d, l) {
     try {
@@ -96,10 +102,4 @@ getSignalTwo.onclick = function () {
     } catch (e) {}
 }({}, document, location));
 
-
-  document.body.classList.add('loading');
-  setTimeout(() => {
-    document.getElementById('preloader').style.display = 'none';
-    document.body.classList.remove('loading');
-  }, 5000);
 
